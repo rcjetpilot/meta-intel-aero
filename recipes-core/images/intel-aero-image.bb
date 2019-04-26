@@ -69,6 +69,7 @@ IMAGE_INSTALL += "networkmanager"
 IMAGE_INSTALL += "ppp"
 IMAGE_INSTALL += "resolvconf"
 IMAGE_INSTALL += "openssh-sftp-server"
+IMAGE_INSTALL += "libnss-mdns"
 
 IMAGE_INSTALL += "hostapd"
 
@@ -98,9 +99,17 @@ IMAGE_INSTALL += "intel-aero-repo"
 # bios
 IMAGE_INSTALL += "aero-bios"
 
+# Aero optical-flow
+IMAGE_INSTALL += "optical-flow"
+
+IMAGE_INSTALL += "fix-cameras-enumeration-order"
+
 enable_repo() {
 		sed -i 's/enabled=0/enabled=1/' ${IMAGE_ROOTFS}/etc/yum.repos.d/intel-aero.repo
+		version=$(echo ${DISTRO_VERSION}|cut -f 1,2 -d ".")
+		sed -i "s/<version>/${version}/" ${IMAGE_ROOTFS}/etc/yum.repos.d/intel-aero.repo
 }
+
 
 ROOTFS_POSTPROCESS_COMMAND += "enable_repo; "
 

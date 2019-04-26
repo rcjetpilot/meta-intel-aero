@@ -3,12 +3,14 @@ DEPENDS = "python python-future"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=93888867ace35ffec2c845ea90b2e16b"
 
-SRCREV = "2de87d42501665df1ef7e707db23e1d25b8df245"
-SRC_URI = "gitsm://git@github.com/01org/mavlink-router.git;protocol=https;branch=master"
+SRCREV = "a4fbeb5008ccb36c8aee2616deedc39f70e93efc"
+SRC_URI = "gitsm://git@github.com/intel/mavlink-router.git;protocol=https"
 SRC_URI += "file://mavlink-routerd.sh"
 SRC_URI += "file://main.conf"
+SRC_URI += "file://0001-Set-rx-trigger-on-ttyS1.patch"
 
 S = "${WORKDIR}/git"
+PR = "r1"
 
 inherit autotools pythonnative pkgconfig systemd
 
